@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_1.png">
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_2.png">
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p2_1.png">
-<meta property="og:updated_time" content="2015-11-08T15:03:49.000Z">
+<meta property="og:updated_time" content="2015-11-10T12:45:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geekpwn2015 writeup">
 <meta name="twitter:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
@@ -146,6 +146,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -217,6 +227,21 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index">
+                    <span itemprop="name">ctf</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -322,10 +347,10 @@
           </div>
 
           <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">0</span>
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">

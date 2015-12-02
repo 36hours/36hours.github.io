@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ctf," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -53,19 +53,37 @@
 
 
 
-<meta name="description" content="这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。
-比赛前两天，队友收到orgs的邮件">
+<meta name="description" content="一些概念
+镜像是创建Docker容器的基础
+镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变
+
+镜像相关指令
+sudo docker pull ubuntu:14.04     #[获取镜像]
+sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]
+sudo dock">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ructfe体验">
-<meta property="og:url" content="http://yoursite.com/2015/11/22/ructfe/index.html">
+<meta property="og:title" content="docker篇">
+<meta property="og:url" content="http://yoursite.com/2015/12/02/note-docker/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。
-比赛前两天，队友收到orgs的邮件">
-<meta property="og:updated_time" content="2015-12-01T13:24:46.000Z">
+<meta property="og:description" content="一些概念
+镜像是创建Docker容器的基础
+镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变
+
+镜像相关指令
+sudo docker pull ubuntu:14.04     #[获取镜像]
+sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]
+sudo dock">
+<meta property="og:updated_time" content="2015-12-02T14:40:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ructfe体验">
-<meta name="twitter:description" content="这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。
-比赛前两天，队友收到orgs的邮件">
+<meta name="twitter:title" content="docker篇">
+<meta name="twitter:description" content="一些概念
+镜像是创建Docker容器的基础
+镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变
+
+镜像相关指令
+sudo docker pull ubuntu:14.04     #[获取镜像]
+sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]
+sudo dock">
 
 
 
@@ -77,7 +95,7 @@
   };
 </script>
 
-  <title> ructfe体验 | czl's blog </title>
+  <title> docker篇 | czl's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -207,7 +225,7 @@
             
             
               
-                ructfe体验
+                docker篇
               
             
           </h1>
@@ -216,8 +234,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-22T15:57:22+08:00" content="2015-11-22">
-              2015-11-22
+            <time itemprop="dateCreated" datetime="2015-12-02T20:27:53+08:00" content="2015-12-02">
+              2015-12-02
             </time>
           </span>
 
@@ -226,8 +244,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
                   </a>
                 </span>
 
@@ -255,22 +273,29 @@
       
 
       
-        <span itemprop="articleBody"><p>这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。</p>
-<p>比赛前两天，队友收到orgs的邮件，让我们去配置测试网络。官网上的manual写得不错，虽然是英语，但慢慢读完理解后还是挺清晰的。安装了virtualbox后，下载官网提供的两个image包：router和test。两个image都是ubuntu 14.10系统的，但没有安装桌面程序，单纯的tty终端。纯命令行操作，没有难倒我，按照说明配置虚拟机网络。很快问题就来了：最后router要配置vpn以便连接上裁判机。队伍的vpn配置文件是邮件里有，现在只需要把它传入到虚拟机router里即可。百度了下发现有vbox有共享文件夹功能，要先安装增强插件，最后发现死活安装不上，所以共享文件的想法行不通。突然发现router里开通了ssh服务，并且提供了帐号。router和实体机之间是用NAT连接的，设置下端口转发规则，就可以在实体机中访问router，之后用scp指令上传文件。这样配置后成功点亮了队伍的network status, 等待比赛的到来…</p>
-<p>比赛前十六个小时，orgs放出了比赛所用Vuln Image压缩包供下载。这里我们弄错了时间（UTC转为北京时间弄错了），大半夜还起来，一直找不到解压密码，结果在IRC问了才知道弄错时间。囧！！！</p>
-<p>比赛开始，解压Vuln Image，导入vbox，启动，提示要登录。晕，密码是什么？？？看下IRC，发现也有很多人在问，orgs答复 It’s a first challenge 。队友很给力，一会就找到相关的帖子，照着做重置root密码。登录进去后，发现/home下有几个文件夹，也就是这次比赛的几个服务（mol, tax, electro, nasarasa, hm,    mig, bank）。文件夹里是服务的源代码，才明白原来就是源码审计。我们要找出源码中的漏洞，一方面修复自己的服务，另一个方面写出exploit去偷去别的队伍的flag。vuln image也只是tty终端，在里面看源码确实痛苦，经过一番思考，把router当做中转点，用scp上传和下载，把所有源码弄了出来。之后我看了源码，真是多种多样。每个服务都由不同编程语言编写的（有python, node.js, .net, go, c等）， 也使用不同的web框架和数据库。太多知识不会，也没发现怎么访问服务调试，到比赛结束还是没找到漏洞。</p>
-<p>后记，发现我们没理解好manual，也是对比赛的不熟悉。</p>
-<blockquote>
-<p>You should use following network settings for your team’s PCs during the game (or virtual machines setup):<br>IP      = 10.A.B.128 - 10.A.B.255<br>Netmask = 255.255.255.0<br>Gateway = 10.A.B.1<br>DNS     = 8.8.8.8</p>
-</blockquote>
-<p>实际上我们需要把自己机子（或者新的虚拟机）的ip设置和Vuln Image同一个局域网，以便用来访问Vuln Image的服务，才可以测试和攻击。</p>
-<h3 id="收获总结">收获总结</h3><ul>
-<li>远程控制: ssh -p 2222 root@127.0.0.1</li>
-<li>上传文件: scp -P 2222 filename root@127.0.0.1:/root （注意是大写P）</li>
-<li>下载文件: scp -P 2222 -r root@127.0.0.1:/root  dirname （-r是操作文件夹）</li>
-<li>重置root密码: <a href="http://blog.dosec.org/archives/2268.html" target="_blank" rel="external">http://blog.dosec.org/archives/2268.html</a></li>
-<li>测试时间: time nc -nv 10.10.10.5 31337</li>
-<li>查看开放端口: netstat -tulnp</li>
+        <span itemprop="articleBody"><h3 id="一些概念">一些概念</h3><ul>
+<li>镜像是创建Docker容器的基础</li>
+<li>镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变</li>
+</ul>
+<h3 id="镜像相关指令">镜像相关指令</h3><ul>
+<li>sudo docker pull ubuntu:14.04     #[获取镜像]</li>
+<li>sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]</li>
+<li>sudo docker images    #[查看本地已有的镜像]</li>
+<li>sudo docker tag dl.dockerpool.com:5000/ubuntu:latest ubuntu:latest    #[添加新的标签]</li>
+<li>sudo docker inspect ubuntu    #[查看镜像详细信息]</li>
+<li>sudo docker inspect -f &#123;&#123;&quot;.Architecture&quot;&#125;&#125; 0b31 #[查看指定信息，记得要加个点，“0b31”是id的缩写]</li>
+<li>sudo docker search mysql  #[查找镜像, 加上-s可以指定星级以上]</li>
+<li>sudo docker rmi ubuntu:14.04  #[删除镜像，注当同一个镜像拥有多个标签的时候，docker rmi命令只是删除了该镜像多个标签中的指定标签而已，并不影响镜像文件]</li>
+</ul>
+<h3 id="容器相关指令">容器相关指令</h3><ul>
+<li>sudo docker create -it ubuntu:latest  #[docker create创建的容器处于stop状态，需用docker start启动]</li>
+<li>sudo docker run ubuntu /bin/echo &quot;hello world&quot;  #[docker run等价于先执行docker create命令，再执行docker start命令]</li>
+<li>sudo docker run -t -i ubuntu /bin/bash    #[-t选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开,按Ctrl+d或输入exit命令来退出容器]</li>
+<li>sudo docker run -d ubuntu /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;   #[-d 让Docker容器在后台以守护态（Daemonized）形式运行, 注意不能和-it一起用]</li>
+<li>sudo docker ps    #[查看容器信息]</li>
+<li>sudo docker ps -a #[查看所有容器信息，包括已经停止的]</li>
+<li>sudo docker logs 0b31 #[查看容易输出信息]</li>
+<li>sudo docker stop 0b31 #[停止容器，首先向容器发送SIGTERM信号，等待一段时间后（默认为10秒），再发送SIGKILL信号终止容器]</li>
 </ul>
 </span>
       
@@ -278,27 +303,21 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ctf/" rel="tag">#ctf</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/08/geekpwn2015-writeup/" rel="next" title="geekpwn2015 writeup">
-                <i class="fa fa-chevron-left"></i> geekpwn2015 writeup
+              <a href="/2015/11/22/ructfe/" rel="next" title="ructfe体验">
+                <i class="fa fa-chevron-left"></i> ructfe体验
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/02/note-docker/" rel="prev" title="docker篇">
-                docker篇 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/02/note-python/" rel="prev" title="python篇">
+                python篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -413,7 +432,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#收获总结"><span class="nav-number">1.</span> <span class="nav-text">收获总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些概念"><span class="nav-number">1.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像相关指令"><span class="nav-number">2.</span> <span class="nav-text">镜像相关指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器相关指令"><span class="nav-number">3.</span> <span class="nav-text">容器相关指令</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

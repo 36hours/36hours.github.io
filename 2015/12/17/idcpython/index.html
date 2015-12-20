@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="reverse," />
+  <meta name="keywords" content="idcpython," />
 
 
 
@@ -53,25 +53,21 @@
 
 
 
-<meta name="description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
+<meta name="description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
 <meta property="og:type" content="article">
-<meta property="og:title" content="geekpwn2015 writeup">
-<meta property="og:url" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/index.html">
+<meta property="og:title" content="idcpython初体验">
+<meta property="og:url" content="http://yoursite.com/2015/12/17/idcpython/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
-<meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_1.png">
-<meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_2.png">
-<meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p2_1.png">
-<meta property="og:updated_time" content="2015-11-22T13:23:08.000Z">
+<meta property="og:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic2.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic3.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic4.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic5.png">
+<meta property="og:updated_time" content="2015-12-20T16:54:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="geekpwn2015 writeup">
-<meta name="twitter:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
+<meta name="twitter:title" content="idcpython初体验">
+<meta name="twitter:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
 
 
 
@@ -83,7 +79,7 @@
   };
 </script>
 
-  <title> geekpwn2015 writeup | czl's blog </title>
+  <title> idcpython初体验 | czl's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -213,7 +209,7 @@
             
             
               
-                geekpwn2015 writeup
+                idcpython初体验
               
             
           </h1>
@@ -222,8 +218,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-08T22:08:17+08:00" content="2015-11-08">
-              2015-11-08
+            <time itemprop="dateCreated" datetime="2015-12-17T21:44:51+08:00" content="2015-12-17">
+              2015-12-17
             </time>
           </span>
 
@@ -232,8 +228,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/writeup/" itemprop="url" rel="index">
-                    <span itemprop="name">writeup</span>
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
                   </a>
                 </span>
 
@@ -261,10 +257,12 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="<!-￼1->"><a href="/2015/11/08/geekpwn2015-writeup/p1.zip" title="P1:你能得到正确的flag吗?">P1:你能得到正确的flag吗?</a></h3><p>上IDA，f5，看到程序逻辑如下：<br><img src="/2015/11/08/geekpwn2015-writeup/p1_1.png" alt="p1_1.png" title=""><br>逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。<br><img src="/2015/11/08/geekpwn2015-writeup/p1_2.png" alt="p1_2.png" title=""></p>
-<h3 id="<!-￼4->"><a href="/2015/11/08/geekpwn2015-writeup/p2.zip" title="P2:找到被隐藏的flag">P2:找到被隐藏的flag</a></h3><img src="/2015/11/08/geekpwn2015-writeup/p2_1.png" alt="p2_1.png" title="">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">guess</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        t = a + n*<span class="number">251</span></span><br><span class="line">        <span class="keyword">if</span> t % b == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> chr(t / b)</span><br><span class="line">        n += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    magic = [ord(ch) <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">'Welcome to GeekPwn 2015!'</span>]</span><br><span class="line">    target = [int(n, <span class="number">16</span>) <span class="keyword">for</span> n <span class="keyword">in</span> <span class="string">"99 A1 73 33 5F AA 42 1C 1B 39 3E F9 39 45 0E 30 0A 45 1C BF 2D BF F6 55"</span>.split()]</span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(magic)):</span><br><span class="line">        ans.append(guess(target[i], magic[i]))</span><br><span class="line">    <span class="keyword">print</span> <span class="string">''</span>.join(ans)</span><br><span class="line">main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># GeekPwn_2015_see_u_1024!</span></span><br></pre></td></tr></table></figure>
-<p>未完待续…</p>
+        <span itemprop="articleBody"><p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idcpython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idcpython的使用。<br><img src="/2015/12/17/idcpython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
+<blockquote>
+<p>long Word(long addr) : 从虚拟机地址addr处读取一个字(2字节)值<br>void PatchWord(long addr, long val) : 设置虚拟地址addr处的一个字值</p>
+</blockquote>
+<img src="/2015/12/17/idcpython/pic2.png" alt="pic2.png" title="">
+<p>保存运行后，发现反汇编窗口0x100b6后的内容已经更新，变得可读。<br><img src="/2015/12/17/idcpython/pic3.png" alt="pic3.png" title=""><br>继续分析程序，发现还有一处自解密，这回用的时base64解密，还好python就有base64模块，不用自己实现非常方便，如下：<br><img src="/2015/12/17/idcpython/pic4.png" alt="pic4.png" title=""><br>运行解密后，程序主要逻辑出来了，分析后发现是对输入字符进行base64加密，之后做些反转交换等操作。再跟密文比较是否一样。我们可以继续使用idcpython写出逆过程得到flag。<br><img src="/2015/12/17/idcpython/pic5.png" alt="pic5.png" title=""><br>还有一点注意的是，如果使用idcpython修改了数据，是没有撤销功能的，因此可以在修改前保留个快照，按 ctrl+shift+T 弹出数据库快照管理界面，之后保存快照。如果发现修改错了数据，可以恢复快照。</p>
 </span>
       
     </div>
@@ -273,7 +271,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/reverse/" rel="tag">#reverse</a>
+            <a href="/tags/idcpython/" rel="tag">#idcpython</a>
           
         </div>
       
@@ -282,13 +280,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/12/02/note-python/" rel="next" title="python篇">
+                <i class="fa fa-chevron-left"></i> python篇
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/22/ructfe/" rel="prev" title="ructfe体验">
-                ructfe体验 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -402,7 +400,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#<!-￼1->"><span class="nav-number">1.</span> <span class="nav-text">P1:你能得到正确的flag吗?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#<!-￼4->"><span class="nav-number">2.</span> <span class="nav-text">P2:找到被隐藏的flag</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

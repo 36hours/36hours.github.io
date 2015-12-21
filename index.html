@@ -221,8 +221,122 @@
             
               
                 
-                <a class="post-title-link" href="/2015/12/17/idcpython/" itemprop="url">
-                  idcpython初体验
+                <a class="post-title-link" href="/2015/12/21/note-gdb/" itemprop="url">
+                  gdb篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-21T23:07:08+08:00" content="2015-12-21">
+              2015-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            基本操作
+set args 可指定运行时参数。（如：set args 10 20 30 40 50）
+show args 命令可以查看设置好的运行参数
+run 运行，缩写r
+continue 继续执行，缩写c
+finish 执行到函数结束
+next 单步步过，不会进函数
+step 单步步入，会进函数
+
+查看指令
+disassemble 汇编, 缩写disas
+disas function 汇编指定函数
+disas function,+50 汇编指定函数偏移50
+disas/r 汇编并显示opcode
+set disassembly-flavor intel  采用inter语法，默认是AT&a
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/21/note-gdb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/17/idapython/" itemprop="url">
+                  idapython初体验
                 </a>
               
             
@@ -274,11 +388,11 @@
         
           <span itemprop="articleBody">
             
-            近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idcpython的使用。按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自
+            近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idapython的使用。按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/17/idcpython/#more" rel="contents">
+            <a class="btn" href="/2015/12/17/idapython/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -753,7 +867,7 @@ sudo docker tag dl.dockerpool.com:5000/ubuntu:latest ubuntu:latest    #[添加
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -767,7 +881,7 @@ sudo docker tag dl.dockerpool.com:5000/ubuntu:latest ubuntu:latest    #[添加
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

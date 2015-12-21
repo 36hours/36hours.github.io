@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="idcpython," />
+  <meta name="keywords" content="idapython," />
 
 
 
@@ -53,21 +53,21 @@
 
 
 
-<meta name="description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta name="description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
 <meta property="og:type" content="article">
-<meta property="og:title" content="idcpython初体验">
-<meta property="og:url" content="http://yoursite.com/2015/12/17/idcpython/index.html">
+<meta property="og:title" content="idapython初体验">
+<meta property="og:url" content="http://yoursite.com/2015/12/17/idapython/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
-<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic1.png">
-<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic2.png">
-<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic3.png">
-<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic4.png">
-<meta property="og:image" content="http://yoursite.com/2015/12/17/idcpython/pic5.png">
-<meta property="og:updated_time" content="2015-12-20T16:54:17.000Z">
+<meta property="og:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic2.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic3.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic4.png">
+<meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic5.png">
+<meta property="og:updated_time" content="2015-12-21T12:21:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="idcpython初体验">
-<meta name="twitter:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta name="twitter:title" content="idapython初体验">
+<meta name="twitter:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
 
 
 
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title> idcpython初体验 | czl's blog </title>
+  <title> idapython初体验 | czl's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +209,7 @@
             
             
               
-                idcpython初体验
+                idapython初体验
               
             
           </h1>
@@ -257,12 +257,12 @@
       
 
       
-        <span itemprop="articleBody"><p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idcpython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idcpython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idcpython的使用。<br><img src="/2015/12/17/idcpython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
+        <span itemprop="articleBody"><p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idapython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idapython的使用。<br><img src="/2015/12/17/idapython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
 <blockquote>
 <p>long Word(long addr) : 从虚拟机地址addr处读取一个字(2字节)值<br>void PatchWord(long addr, long val) : 设置虚拟地址addr处的一个字值</p>
 </blockquote>
-<img src="/2015/12/17/idcpython/pic2.png" alt="pic2.png" title="">
-<p>保存运行后，发现反汇编窗口0x100b6后的内容已经更新，变得可读。<br><img src="/2015/12/17/idcpython/pic3.png" alt="pic3.png" title=""><br>继续分析程序，发现还有一处自解密，这回用的时base64解密，还好python就有base64模块，不用自己实现非常方便，如下：<br><img src="/2015/12/17/idcpython/pic4.png" alt="pic4.png" title=""><br>运行解密后，程序主要逻辑出来了，分析后发现是对输入字符进行base64加密，之后做些反转交换等操作。再跟密文比较是否一样。我们可以继续使用idcpython写出逆过程得到flag。<br><img src="/2015/12/17/idcpython/pic5.png" alt="pic5.png" title=""><br>还有一点注意的是，如果使用idcpython修改了数据，是没有撤销功能的，因此可以在修改前保留个快照，按 ctrl+shift+T 弹出数据库快照管理界面，之后保存快照。如果发现修改错了数据，可以恢复快照。</p>
+<img src="/2015/12/17/idapython/pic2.png" alt="pic2.png" title="">
+<p>保存运行后，发现反汇编窗口0x100b6后的内容已经更新，变得可读。<br><img src="/2015/12/17/idapython/pic3.png" alt="pic3.png" title=""><br>继续分析程序，发现还有一处自解密，这回用的时base64解密，还好python就有base64模块，不用自己实现非常方便，如下：<br><img src="/2015/12/17/idapython/pic4.png" alt="pic4.png" title=""><br>运行解密后，程序主要逻辑出来了，分析后发现是对输入字符进行base64加密，之后做些反转交换等操作。再跟密文比较是否一样。我们可以继续使用idapython写出逆过程得到flag。<br><img src="/2015/12/17/idapython/pic5.png" alt="pic5.png" title=""><br>还有一点注意的是，如果使用idapython修改了数据，是没有撤销功能的，因此可以在修改前保留个快照，按 ctrl+shift+T 弹出数据库快照管理界面，之后保存快照。如果发现修改错了数据，可以恢复快照。</p>
 </span>
       
     </div>
@@ -271,7 +271,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/idcpython/" rel="tag">#idcpython</a>
+            <a href="/tags/idapython/" rel="tag">#idapython</a>
           
         </div>
       
@@ -287,6 +287,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/21/note-gdb/" rel="prev" title="gdb篇">
+                gdb篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -354,7 +358,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -368,7 +372,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

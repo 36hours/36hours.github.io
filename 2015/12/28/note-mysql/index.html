@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -53,16 +53,34 @@
 
 
 
-<meta name="description">
+<meta name="description" content="基本指令
+mysql -u root -p
+show databases
+create database test;
+use test;
+show tables;
+create table users(  id int NOT NULL AUTO_INCREMENT,  username varchar(255) NOT NULL,  age int,  PRIMARY KEY (id)) ENG">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python篇">
-<meta property="og:url" content="http://yoursite.com/2015/12/02/note-python/index.html">
+<meta property="og:title" content="mysql篇">
+<meta property="og:url" content="http://yoursite.com/2015/12/28/note-mysql/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description">
-<meta property="og:updated_time" content="2015-12-27T06:57:37.000Z">
+<meta property="og:description" content="基本指令
+mysql -u root -p
+show databases
+create database test;
+use test;
+show tables;
+create table users(  id int NOT NULL AUTO_INCREMENT,  username varchar(255) NOT NULL,  age int,  PRIMARY KEY (id)) ENG">
+<meta property="og:updated_time" content="2015-12-28T15:06:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python篇">
-<meta name="twitter:description">
+<meta name="twitter:title" content="mysql篇">
+<meta name="twitter:description" content="基本指令
+mysql -u root -p
+show databases
+create database test;
+use test;
+show tables;
+create table users(  id int NOT NULL AUTO_INCREMENT,  username varchar(255) NOT NULL,  age int,  PRIMARY KEY (id)) ENG">
 
 
 
@@ -74,7 +92,7 @@
   };
 </script>
 
-  <title> python篇 | czl's blog </title>
+  <title> mysql篇 | czl's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -204,7 +222,7 @@
             
             
               
-                python篇
+                mysql篇
               
             
           </h1>
@@ -213,8 +231,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-02T20:28:19+08:00" content="2015-12-02">
-              2015-12-02
+            <time itemprop="dateCreated" datetime="2015-12-28T22:33:15+08:00" content="2015-12-28">
+              2015-12-28
             </time>
           </span>
 
@@ -252,28 +270,40 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h3 id="基本指令">基本指令</h3><ul>
+<li>mysql -u root -p</li>
+<li>show databases</li>
+<li>create database test;</li>
+<li>use test;</li>
+<li>show tables;</li>
+<li>create table users(<br>  id int NOT NULL AUTO_INCREMENT,<br>  username varchar(255) NOT NULL,<br>  age int,<br>  PRIMARY KEY (id)<br>) ENGINE = innodb;</li>
+<li>select * from user;</li>
+<li>insert into test (username, age)  values (‘liming’, 25);</li>
+</ul>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/02/note-docker/" rel="next" title="docker篇">
-                <i class="fa fa-chevron-left"></i> docker篇
+              <a href="/2015/12/21/note-gdb/" rel="next" title="gdb篇">
+                <i class="fa fa-chevron-left"></i> gdb篇
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/17/idapython/" rel="prev" title="idapython初体验">
-                idapython初体验 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -387,7 +417,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本指令"><span class="nav-number">1.</span> <span class="nav-text">基本指令</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -5,25 +5,19 @@
   
   <title>geekpwn2015 writeup | czl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
+  <meta name="description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="geekpwn2015 writeup">
 <meta property="og:url" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
+<meta property="og:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：">
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_1.png">
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p1_2.png">
 <meta property="og:image" content="http://yoursite.com/2015/11/08/geekpwn2015-writeup/p2_1.png">
-<meta property="og:updated_time" content="2015-11-22T13:23:08.000Z">
+<meta property="og:updated_time" content="2016-01-06T14:22:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geekpwn2015 writeup">
-<meta name="twitter:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。
-&quot;&amp;gt;P2:找到被隐藏的flag
-123456789101112131415161718def guess(a, b):">
+<meta name="twitter:description" content="&quot;&amp;gt;P1:你能得到正确的flag吗?上IDA，f5，看到程序逻辑如下：">
   
     <link rel="alternative" href="/atom.xml" title="czl&#39;s blog" type="application/atom+xml">
   
@@ -99,7 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="<!-￼1->"><a href="/2015/11/08/geekpwn2015-writeup/p1.zip" title="P1:你能得到正确的flag吗?">P1:你能得到正确的flag吗?</a></h3><p>上IDA，f5，看到程序逻辑如下：<br><img src="/2015/11/08/geekpwn2015-writeup/p1_1.png" alt="p1_1.png" title=""><br>逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。<br><img src="/2015/11/08/geekpwn2015-writeup/p1_2.png" alt="p1_2.png" title=""></p>
+        <h3 id="<!-￼1->"><a href="/2015/11/08/geekpwn2015-writeup/p1.zip" title="P1:你能得到正确的flag吗?">P1:你能得到正确的flag吗?</a></h3><p>上IDA，f5，看到程序逻辑如下：<br><a id="more"></a><br><img src="/2015/11/08/geekpwn2015-writeup/p1_1.png" alt="p1_1.png" title=""><br>逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。<br><img src="/2015/11/08/geekpwn2015-writeup/p1_2.png" alt="p1_2.png" title=""></p>
 <h3 id="<!-￼4->"><a href="/2015/11/08/geekpwn2015-writeup/p2.zip" title="P2:找到被隐藏的flag">P2:找到被隐藏的flag</a></h3><img src="/2015/11/08/geekpwn2015-writeup/p2_1.png" alt="p2_1.png" title="">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">guess</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        t = a + n*<span class="number">251</span></span><br><span class="line">        <span class="keyword">if</span> t % b == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> chr(t / b)</span><br><span class="line">        n += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    magic = [ord(ch) <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">'Welcome to GeekPwn 2015!'</span>]</span><br><span class="line">    target = [int(n, <span class="number">16</span>) <span class="keyword">for</span> n <span class="keyword">in</span> <span class="string">"99 A1 73 33 5F AA 42 1C 1B 39 3E F9 39 45 0E 30 0A 45 1C BF 2D BF F6 55"</span>.split()]</span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(magic)):</span><br><span class="line">        ans.append(guess(target[i], magic[i]))</span><br><span class="line">    <span class="keyword">print</span> <span class="string">''</span>.join(ans)</span><br><span class="line">main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># GeekPwn_2015_see_u_1024!</span></span><br></pre></td></tr></table></figure>
 <p>未完待续…</p>
@@ -107,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/08/geekpwn2015-writeup/" data-id="cij2veztr000qbzu9g43ucqwk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/08/geekpwn2015-writeup/" data-id="cij2x6nph000qxtu994z179xk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>

@@ -5,21 +5,21 @@
   
   <title>idapython初体验 | czl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+  <meta name="description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="idapython初体验">
 <meta property="og:url" content="http://yoursite.com/2015/12/17/idapython/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta property="og:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。">
 <meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic1.png">
 <meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic2.png">
 <meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic3.png">
 <meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic4.png">
 <meta property="og:image" content="http://yoursite.com/2015/12/17/idapython/pic5.png">
-<meta property="og:updated_time" content="2015-12-21T12:21:33.000Z">
+<meta property="og:updated_time" content="2016-01-06T14:15:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="idapython初体验">
-<meta name="twitter:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”[附件下载]为例子，程序是808">
+<meta name="twitter:description" content="近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。">
   
     <link rel="alternative" href="/atom.xml" title="czl&#39;s blog" type="application/atom+xml">
   
@@ -95,7 +95,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idapython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idapython的使用。<br><img src="/2015/12/17/idapython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
+        <p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。<a id="more"></a>这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idapython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idapython的使用。<br><img src="/2015/12/17/idapython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
 <blockquote>
 <p>long Word(long addr) : 从虚拟机地址addr处读取一个字(2字节)值<br>void PatchWord(long addr, long val) : 设置虚拟地址addr处的一个字值</p>
 </blockquote>
@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/17/idapython/" data-id="cij2vezsv000ebzu9yhtblbcr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/17/idapython/" data-id="cij2x6noh000extu9aq4rsyhk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idapython/">idapython</a></li></ul>

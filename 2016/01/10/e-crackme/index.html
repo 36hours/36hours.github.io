@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: 日志 | czl&#39;s blog</title>
+  <title>小小易语言crackme | czl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="czl's blog">
-<meta property="og:url" content="http://yoursite.com/categories/日志/index.html">
+  <meta name="description" content="这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。附件:小小易语言CM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小小易语言crackme">
+<meta property="og:url" content="http://yoursite.com/2016/01/10/e-crackme/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description">
+<meta property="og:description" content="这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。附件:小小易语言CM">
+<meta property="og:image" content="http://yoursite.com/2016/01/10/e-crackme/p1.png">
+<meta property="og:image" content="http://yoursite.com/2016/01/10/e-crackme/p2.png">
+<meta property="og:updated_time" content="2016-01-10T16:13:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="czl's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="小小易语言crackme">
+<meta name="twitter:description" content="这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。附件:小小易语言CM">
   
     <link rel="alternative" href="/atom.xml" title="czl&#39;s blog" type="application/atom+xml">
   
@@ -63,87 +66,69 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/01/06/reinstall/" class="archive-article-date">
-  <time datetime="2016-01-06T12:37:26.000Z" itemprop="datePublished">Jan 6</time>
+        <section id="main"><article id="post-e-crackme" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/10/e-crackme/" class="article-date">
+  <time datetime="2016-01-10T12:13:45.000Z" itemprop="datePublished">2016-01-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/逆向分析/">逆向分析</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/06/reinstall/">系统重装记</a>
+    <h1 class="article-title" itemprop="name">
+      小小易语言crackme
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/17/idapython/" class="archive-article-date">
-  <time datetime="2015-12-17T13:44:51.000Z" itemprop="datePublished">Dec 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/17/idapython/">idapython初体验</a>
-    </h1>
-  
+        <p>这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。<a href="/2016/01/10/e-crackme/小小易语言CM.rar" title="附件:小小易语言CM">附件:小小易语言CM</a><br><a id="more"></a><br>首先，我们要明白一点：易语言其实是基于mfc的,它依然需要mfc的消息派发机制,只不过它hook了消息处理，所有的消息都要经它转发，因此我们从它的消息处理开始分析。<br>消息处理的特征码为FF55FC5F5E（详细请看参考资料一），查找特征值码，发现在0x41b8dd，在od里下断点，输入字符串点击按钮，断下来后，发现button消息的处理在0x401168。往下浏览下，发现有很多未知函数，如果一个个分析的话，花费时间太多了。这时我们可以借助FLIRT签名来识别库。用flair工具制作易语言的框架库的sig文件（参考资料二），将”易语言开发环境目录\static_lib\krnln_static.lib”生成相应的sig文件。再用IDA或od加载sig文件，这时会发现库函数都被识别出来了。从函数名我们可以猜出该函数的功能，这省了不少功夫，之后就是普通的汇编逻辑分析了。<br><img src="/2016/01/10/e-crackme/p1.png" alt="p1.png" title=""><br><img src="/2016/01/10/e-crackme/p2.png" alt="p2.png" title=""></p>
+<h3 id="程序逻辑流程">程序逻辑流程</h3><ol>
+<li>判断输入字符串是否为”wssb”</li>
+<li>获取运行目录下的”sb.txt”文件的内容a</li>
+<li>(int(a) * 0x100000 + 0x1455) -&gt; addr</li>
+<li>jmp addr 跳到弹出提示通过的信息框逻辑（提示信息是用base64加密保存的）</li>
+</ol>
+<h3 id="参考资料">参考资料</h3><ol>
+<li><a href="http://bbs.pediy.com/showthread.php?t=195626" target="_blank" rel="external">易语言消息机制分析(消息拦截原理)</a></li>
+<li>《IDA Pro权威指南》第12章 使用FLIRT签名识别库</li>
+</ol>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/11/22/ructfe/" class="archive-article-date">
-  <time datetime="2015-11-22T07:57:22.000Z" itemprop="datePublished">Nov 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/22/ructfe/">ructfe体验</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/10/e-crackme/" data-id="cij8k7xho0002uqu9rvxqfuzy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crackme/">crackme</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/06/reinstall/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">系统重装记</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

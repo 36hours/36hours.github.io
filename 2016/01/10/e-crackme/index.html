@@ -13,7 +13,7 @@
 <meta property="og:description" content="这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。附件:小小易语言CM">
 <meta property="og:image" content="http://yoursite.com/2016/01/10/e-crackme/p1.png">
 <meta property="og:image" content="http://yoursite.com/2016/01/10/e-crackme/p2.png">
-<meta property="og:updated_time" content="2016-01-10T16:13:21.000Z">
+<meta property="og:updated_time" content="2016-01-10T16:20:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小小易语言crackme">
 <meta name="twitter:description" content="这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。附件:小小易语言CM">
@@ -95,7 +95,7 @@
         <p>这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。<a href="/2016/01/10/e-crackme/小小易语言CM.rar" title="附件:小小易语言CM">附件:小小易语言CM</a><br><a id="more"></a><br>首先，我们要明白一点：易语言其实是基于mfc的,它依然需要mfc的消息派发机制,只不过它hook了消息处理，所有的消息都要经它转发，因此我们从它的消息处理开始分析。<br>消息处理的特征码为FF55FC5F5E（详细请看参考资料一），查找特征值码，发现在0x41b8dd，在od里下断点，输入字符串点击按钮，断下来后，发现button消息的处理在0x401168。往下浏览下，发现有很多未知函数，如果一个个分析的话，花费时间太多了。这时我们可以借助FLIRT签名来识别库。用flair工具制作易语言的框架库的sig文件（参考资料二），将”易语言开发环境目录\static_lib\krnln_static.lib”生成相应的sig文件。再用IDA或od加载sig文件，这时会发现库函数都被识别出来了。从函数名我们可以猜出该函数的功能，这省了不少功夫，之后就是普通的汇编逻辑分析了。<br><img src="/2016/01/10/e-crackme/p1.png" alt="p1.png" title=""><br><img src="/2016/01/10/e-crackme/p2.png" alt="p2.png" title=""></p>
 <h3 id="程序逻辑流程">程序逻辑流程</h3><ol>
 <li>判断输入字符串是否为”wssb”</li>
-<li>获取运行目录下的”sb.txt”文件的内容a</li>
+<li>获取运行目录下的”sb.txt”文件的内容a，后续分析后a可以为4</li>
 <li>(int(a) * 0x100000 + 0x1455) -&gt; addr</li>
 <li>jmp addr 跳到弹出提示通过的信息框逻辑（提示信息是用base64加密保存的）</li>
 </ol>
@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/10/e-crackme/" data-id="cij8k7xho0002uqu9rvxqfuzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/10/e-crackme/" data-id="cij8qykru00028ku9owy4vo9n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crackme/">crackme</a></li></ul>

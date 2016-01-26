@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[czl's blog]]></title>
+  <subtitle><![CDATA[reverse! reverse! reverse!]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2016-01-10T16:20:22.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name><![CDATA[czl]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[小小易语言crackme]]></title>
+    <link href="http://yoursite.com/2016/01/10/e-crackme/"/>
+    <id>http://yoursite.com/2016/01/10/e-crackme/</id>
+    <published>2016-01-10T12:13:45.000Z</published>
+    <updated>2016-01-10T16:20:22.000Z</updated>
+    <content type="html"><![CDATA[<p>这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。<a href="/2016/01/10/e-crackme/小小易语言CM.rar" title="附件:小小易语言CM">附件:小小易语言CM</a><br><a id="more"></a><br>首先，我们要明白一点：易语言其实是基于mfc的,它依然需要mfc的消息派发机制,只不过它hook了消息处理，所有的消息都要经它转发，因此我们从它的消息处理开始分析。<br>消息处理的特征码为FF55FC5F5E（详细请看参考资料一），查找特征值码，发现在0x41b8dd，在od里下断点，输入字符串点击按钮，断下来后，发现button消息的处理在0x401168。往下浏览下，发现有很多未知函数，如果一个个分析的话，花费时间太多了。这时我们可以借助FLIRT签名来识别库。用flair工具制作易语言的框架库的sig文件（参考资料二），将”易语言开发环境目录\static_lib\krnln_static.lib”生成相应的sig文件。再用IDA或od加载sig文件，这时会发现库函数都被识别出来了。从函数名我们可以猜出该函数的功能，这省了不少功夫，之后就是普通的汇编逻辑分析了。<br><img src="/2016/01/10/e-crackme/p1.png" alt="p1.png" title=""><br><img src="/2016/01/10/e-crackme/p2.png" alt="p2.png" title=""></p>
+<h3 id="程序逻辑流程">程序逻辑流程</h3><ol>
+<li>判断输入字符串是否为”wssb”</li>
+<li>获取运行目录下的”sb.txt”文件的内容a，后续分析后a可以为4</li>
+<li>(int(a) * 0x100000 + 0x1455) -&gt; addr</li>
+<li>jmp addr 跳到弹出提示通过的信息框逻辑（提示信息是用base64加密保存的）</li>
+</ol>
+<h3 id="参考资料">参考资料</h3><ol>
+<li><a href="http://bbs.pediy.com/showthread.php?t=195626" target="_blank" rel="external">易语言消息机制分析(消息拦截原理)</a></li>
+<li>《IDA Pro权威指南》第12章 使用FLIRT签名识别库</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是一个使用易语言写的窗口程序，我们来分析它，学习怎么分析基本的易语言程序。<a href="/2016/01/10/e-crackme/小小易语言CM.rar" title="附件:小小易语言CM">附件:小小易语言CM</a><br>]]>
+    
+    </summary>
+    
+      <category term="crackme" scheme="http://yoursite.com/tags/crackme/"/>
+    
+      <category term="逆向分析" scheme="http://yoursite.com/categories/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[系统重装记]]></title>
+    <link href="http://yoursite.com/2016/01/06/reinstall/"/>
+    <id>http://yoursite.com/2016/01/06/reinstall/</id>
+    <published>2016-01-06T12:37:26.000Z</published>
+    <updated>2016-01-26T13:49:25.000Z</updated>
+    <content type="html"><![CDATA[<p>元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。</p>
+<a id="more"></a>
+<h3 id="UEFI安装ubuntu">UEFI安装ubuntu</h3><p>关键要弄个efi分区 (ps:有时没有这个选项，猜想U盘要选UEFI启动，或者要联网)</p>
+<h3 id="中文输入">中文输入</h3><p><a href="http://my.oschina.net/No5stranger/blog/290026" target="_blank" rel="external">http://my.oschina.net/No5stranger/blog/290026</a><br>搜狗拼音 <a href="http://pinyin.sogou.com/linux/" target="_blank" rel="external">http://pinyin.sogou.com/linux/</a></p>
+<h3 id="安装jdk7">安装jdk7</h3><p><a href="http://blog.csdn.net/czmchen/article/details/38843099" target="_blank" rel="external">http://blog.csdn.net/czmchen/article/details/38843099</a></p>
+<h3 id="基础工具">基础工具</h3><p>sudo apt-get install git<br>sudo apt-get install nautilus-open-terminal<br>sudo apt-get install rar<br>sudo apt-get install bless<br>sudo apt-get install keepass2<br><a href="http://lab.yqc.im/ubuntu-keepass.html" target="_blank" rel="external">http://lab.yqc.im/ubuntu-keepass.html</a><br>sudo mv /etc/fonts/conf.d/49-sansserif.conf /etc/fonts/conf.d/49-sansserif.conf.bak</p>
+<h3 id="wine">wine</h3><p>sudo apt-get install wine<br><a href="https://wiki.winehq.org/FAQ" target="_blank" rel="external">常见问题</a><br>WINEARCH=win32 WINEPREFIX=~/.win32 winecfg  创建32位系统<br>WINEPREFIX=~/.win32 winetricks mfc42 安装dll</p>
+<h3 id="sublime">sublime</h3><p><a href="http://justcoding.iteye.com/blog/1957613" target="_blank" rel="external">http://justcoding.iteye.com/blog/1957613</a><br>sudo add-apt-repository ppa:webupd8team/sublime-text-3<br>sudo apt-get update<br>sudo apt-get install sublime-text-installer<br><a href="https://github.com/lyfeyaj/sublime-text-imfix" target="_blank" rel="external">https://github.com/lyfeyaj/sublime-text-imfix</a>  解决不能输入中文问题</p>
+<h3 id="Ubuntu有线网络与无线网线自由切换方法">Ubuntu有线网络与无线网线自由切换方法</h3><p><a href="http://my.oschina.net/zengsai/blog/203201" target="_blank" rel="external">http://my.oschina.net/zengsai/blog/203201</a></p>
+<h3 id="安装emacs">安装emacs</h3><p>$ sudo apt-get install build-essential<br>$ sudo apt-get build-dep emacs24<br>从里面找最近的镜像 <a href="http://www.gnu.org/prep/ftp" target="_blank" rel="external">http://www.gnu.org/prep/ftp</a><br>$ wget <a href="http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.5.tar.xz" target="_blank" rel="external">http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.5.tar.xz</a><br>$ xz -d emacs-24.5.tar.xz<br>$ tar -xvf emacs-24.5.tar<br>$ rm emacs-24.5.tar<br>$ cd emacs-24.5<br>$ ./configure –prefix=/opt/emacs<br>$ make<br>$ sudo make install</p>
+<h3 id="安装VMware">安装VMware</h3><p><a href="http://www.linuxidc.com/Linux/2015-01/111791.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2015-01/111791.htm</a><br>vmware workstation 11许可证密钥:1F04Z-6D111-7Z029-AV0Q4-3AEH8</p>
+<h3 id="搭建安卓开发环境">搭建安卓开发环境</h3><p><a href="http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html" target="_blank" rel="external">http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html</a></p>
+<h3 id="安装pip">安装pip</h3><p>$ sudo apt-get install python-pip python-dev build-essential<br>$ sudo pip install –upgrade pip<br>$ sudo pip install –upgrade virtualenv</p>
+<h3 id="安装pwntools">安装pwntools</h3><p>$ sudo pip install pwntools</p>
+<h3 id="安装nodejs和hexo">安装nodejs和hexo</h3><p><a href="https://cnodejs.org/topic/53a92af6c3ee0b58203258fe" target="_blank" rel="external">https://cnodejs.org/topic/53a92af6c3ee0b58203258fe</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>npm install hexo-deployer-git –save<br>npm install hexo-generator-free –save<br>npm install hexo-generator-sitemap –save</p>
+<h3 id="安装Zeal">安装Zeal</h3><p><a href="https://zealdocs.org/download.html" target="_blank" rel="external">https://zealdocs.org/download.html</a><br>$ sudo add-apt-repository ppa:zeal-developers/ppa<br>$ sudo apt-get update<br>$ sudo apt-get install zeal</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。</p>]]>
+    
+    </summary>
+    
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[mysql篇]]></title>
+    <link href="http://yoursite.com/2015/12/28/note-mysql/"/>
+    <id>http://yoursite.com/2015/12/28/note-mysql/</id>
+    <published>2015-12-28T14:33:15.000Z</published>
+    <updated>2016-01-06T14:23:19.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="基本指令">基本指令</h3><ul>
+<li>mysql -u root -p</li>
+<li>show databases</li>
+<li>create database test;<a id="more"></a></li>
+<li>use test;</li>
+<li>show tables;</li>
+<li>create table users(<br>  id int NOT NULL AUTO_INCREMENT,<br>  username varchar(255) NOT NULL,<br>  age int,<br>  PRIMARY KEY (id)<br>) ENGINE = innodb;</li>
+<li>select * from user;</li>
+<li>insert into test (username, age)  values (‘liming’, 25);</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="基本指令">基本指令</h3><ul>
+<li>mysql -u root -p</li>
+<li>show databases</li>
+<li>create database test;]]>
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[gdb篇]]></title>
+    <link href="http://yoursite.com/2015/12/21/note-gdb/"/>
+    <id>http://yoursite.com/2015/12/21/note-gdb/</id>
+    <published>2015-12-21T15:07:08.000Z</published>
+    <updated>2016-01-06T14:22:36.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="基本操作">基本操作</h3><ul>
+<li>set args 可指定运行时参数。（如：set args 10 20 30 40 50）</li>
+<li>show args 命令可以查看设置好的运行参数</li>
+<li>run 运行，缩写r<a id="more"></a></li>
+<li>continue 继续执行，缩写c</li>
+<li>finish 执行到函数结束</li>
+<li>next 单步步过，不会进函数</li>
+<li>step 单步步入，会进函数</li>
+</ul>
+<h3 id="查看指令">查看指令</h3><ul>
+<li>disassemble 汇编, 缩写disas</li>
+<li>disas function 汇编指定函数</li>
+<li>disas function,+50 汇编指定函数偏移50</li>
+<li>disas/r 汇编并显示opcode</li>
+<li>set disassembly-flavor intel  采用inter语法，默认是AT&amp;T</li>
+<li>display/i $rip 每一步显示指令</li>
+</ul>
+<h3 id="断点">断点</h3><ul>
+<li>break filename.c:number 在源码中第几行下断点</li>
+<li>break function 对函数下断点</li>
+<li>break *address 对地址下断点</li>
+<li>info break 显示断点信息</li>
+<li>del n 删除n号断点</li>
+</ul>
+<h3 id="查看内存">查看内存</h3><ul>
+<li>bt 显示栈内容</li>
+<li>info registers 查看寄存器</li>
+<li>x/x *address  用16进制显示指定地址里的内容</li>
+<li>x/s *address 显示字符串</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="基本操作">基本操作</h3><ul>
+<li>set args 可指定运行时参数。（如：set args 10 20 30 40 50）</li>
+<li>show args 命令可以查看设置好的运行参数</li>
+<li>run 运行，缩写r]]>
+    
+    </summary>
+    
+      <category term="gdb" scheme="http://yoursite.com/tags/gdb/"/>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[idapython初体验]]></title>
+    <link href="http://yoursite.com/2015/12/17/idapython/"/>
+    <id>http://yoursite.com/2015/12/17/idapython/</id>
+    <published>2015-12-17T13:44:51.000Z</published>
+    <updated>2016-01-06T14:15:12.000Z</updated>
+    <content type="html"><![CDATA[<p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。<a id="more"></a>这里以hctf2015中的“一个复古的程序”<a href="/2015/12/17/idapython/15_1322.exe" title="[附件下载]">[附件下载]</a>为例子，程序是8086汇编写的，程序开始后，先异或解密后续代码。以下省略对逻辑的详细分析过程，主要表现idapython的使用。<br><img src="/2015/12/17/idapython/pic1.png" alt="pic1.png" title=""><br>按 shift+f2 弹出脚本窗口，新建个snippet，选择脚本语言为python，照抄自解密代码，这里主要用了两个IDC函数：</p>
+<blockquote>
+<p>long Word(long addr) : 从虚拟机地址addr处读取一个字(2字节)值<br>void PatchWord(long addr, long val) : 设置虚拟地址addr处的一个字值</p>
+</blockquote>
+<img src="/2015/12/17/idapython/pic2.png" alt="pic2.png" title="">
+<p>保存运行后，发现反汇编窗口0x100b6后的内容已经更新，变得可读。<br><img src="/2015/12/17/idapython/pic3.png" alt="pic3.png" title=""><br>继续分析程序，发现还有一处自解密，这回用的时base64解密，还好python就有base64模块，不用自己实现非常方便，如下：<br><img src="/2015/12/17/idapython/pic4.png" alt="pic4.png" title=""><br>运行解密后，程序主要逻辑出来了，分析后发现是对输入字符进行base64加密，之后做些反转交换等操作。再跟密文比较是否一样。我们可以继续使用idapython写出逆过程得到flag。<br><img src="/2015/12/17/idapython/pic5.png" alt="pic5.png" title=""><br>还有一点注意的是，如果使用idapython修改了数据，是没有撤销功能的，因此可以在修改前保留个快照，按 ctrl+shift+T 弹出数据库快照管理界面，之后保存快照。如果发现修改错了数据，可以恢复快照。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>近来做了许多ctf的RE题，用IDA分析确实方便，f5更是神器。但发现有些题目为了anti-f5,而对程序代码进行混淆，这样f5就无法直接反汇编回来，加大了逆向的难度。混淆有多种方式，例如加密部分代码，然后在程序运行后进行自解密。我们可以借助IDA的脚本idapython来模拟程序运行时的自解密，从而更好更方便的逆向分析。]]>
+    
+    </summary>
+    
+      <category term="idapython" scheme="http://yoursite.com/tags/idapython/"/>
+    
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[python篇]]></title>
+    <link href="http://yoursite.com/2015/12/02/note-python/"/>
+    <id>http://yoursite.com/2015/12/02/note-python/</id>
+    <published>2015-12-02T12:28:19.000Z</published>
+    <updated>2016-01-06T14:14:59.000Z</updated>
+    <content type="html"><![CDATA[<a id="more"></a>
+]]></content>
+    <summary type="html">
+    <![CDATA[<a id="more"></a>
+]]>
+    </summary>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[docker篇]]></title>
+    <link href="http://yoursite.com/2015/12/02/note-docker/"/>
+    <id>http://yoursite.com/2015/12/02/note-docker/</id>
+    <published>2015-12-02T12:27:53.000Z</published>
+    <updated>2016-01-06T14:14:48.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="一些概念">一些概念</h3><ul>
+<li>镜像是创建Docker容器的基础</li>
+<li>镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变</li>
+</ul>
+<a id="more"></a>
+<h3 id="镜像相关指令">镜像相关指令</h3><ul>
+<li>sudo docker pull ubuntu:14.04     #[获取镜像]</li>
+<li>sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]</li>
+<li>sudo docker images    #[查看本地已有的镜像]</li>
+<li>sudo docker tag dl.dockerpool.com:5000/ubuntu:latest ubuntu:latest    #[添加新的标签]</li>
+<li>sudo docker inspect ubuntu    #[查看镜像详细信息]</li>
+<li>sudo docker inspect -f &#123;&#123;&quot;.Architecture&quot;&#125;&#125; 0b31 #[查看指定信息，记得属性前面要加个点，“0b31”是id的缩写]</li>
+<li>sudo docker search mysql  #[查找镜像, 加上-s可以指定星级以上]</li>
+<li>sudo docker rmi ubuntu:14.04  #[删除镜像，注当同一个镜像拥有多个标签的时候，docker rmi命令只是删除了该镜像多个标签中的指定标签而已，并不影响镜像文件]</li>
+</ul>
+<h3 id="容器相关指令">容器相关指令</h3><ul>
+<li>sudo docker create -it ubuntu:latest  #[docker create创建的容器处于stop状态，需用docker start启动]</li>
+<li>sudo docker run ubuntu /bin/echo &quot;hello world&quot;  #[docker run等价于先执行docker create命令，再执行docker start命令]</li>
+<li>sudo docker run -t -i ubuntu /bin/bash    #[-t选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开,按Ctrl+d或输入exit命令来退出容器]</li>
+<li>sudo docker run -d ubuntu /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;   #[-d 让Docker容器在后台以守护态（Daemonized）形式运行, 注意不能和-it一起用]</li>
+<li>sudo docker ps    #[查看容器信息]</li>
+<li>sudo docker ps -a #[查看所有容器信息，包括已经停止的]</li>
+<li>sudo docker logs 0b31 #[查看容易输出信息]</li>
+<li>sudo docker stop 0b31 #[停止容器，首先向容器发送SIGTERM信号，等待一段时间后（默认为10秒），再发送SIGKILL信号终止容器]</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="一些概念">一些概念</h3><ul>
+<li>镜像是创建Docker容器的基础</li>
+<li>镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ructfe体验]]></title>
+    <link href="http://yoursite.com/2015/11/22/ructfe/"/>
+    <id>http://yoursite.com/2015/11/22/ructfe/</id>
+    <published>2015-11-22T07:57:22.000Z</published>
+    <updated>2016-01-06T14:14:38.000Z</updated>
+    <content type="html"><![CDATA[<p>这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。</p>
+<a id="more"></a>
+<p>比赛前两天，队友收到orgs的邮件，让我们去配置测试网络。官网上的manual写得不错，虽然是英语，但慢慢读完理解后还是挺清晰的。安装了virtualbox后，下载官网提供的两个image包：router和test。两个image都是ubuntu 14.10系统的，但没有安装桌面程序，单纯的tty终端。纯命令行操作，没有难倒我，按照说明配置虚拟机网络。很快问题就来了：最后router要配置vpn以便连接上裁判机。队伍的vpn配置文件是邮件里有，现在只需要把它传入到虚拟机router里即可。百度了下发现有vbox有共享文件夹功能，要先安装增强插件，最后发现死活安装不上，所以共享文件的想法行不通。突然发现router里开通了ssh服务，并且提供了帐号。router和实体机之间是用NAT连接的，设置下端口转发规则，就可以在实体机中访问router，之后用scp指令上传文件。这样配置后成功点亮了队伍的network status, 等待比赛的到来…</p>
+<p>比赛前十六个小时，orgs放出了比赛所用Vuln Image压缩包供下载。这里我们弄错了时间（UTC转为北京时间弄错了），大半夜还起来，一直找不到解压密码，结果在IRC问了才知道弄错时间。囧！！！</p>
+<p>比赛开始，解压Vuln Image，导入vbox，启动，提示要登录。晕，密码是什么？？？看下IRC，发现也有很多人在问，orgs答复 It’s a first challenge 。队友很给力，一会就找到相关的帖子，照着做重置root密码。登录进去后，发现/home下有几个文件夹，也就是这次比赛的几个服务（mol, tax, electro, nasarasa, hm,    mig, bank）。文件夹里是服务的源代码，才明白原来就是源码审计。我们要找出源码中的漏洞，一方面修复自己的服务，另一个方面写出exploit去偷去别的队伍的flag。vuln image也只是tty终端，在里面看源码确实痛苦，经过一番思考，把router当做中转点，用scp上传和下载，把所有源码弄了出来。之后我看了源码，真是多种多样。每个服务都由不同编程语言编写的（有python, node.js, .net, go, c等）， 也使用不同的web框架和数据库。太多知识不会，也没发现怎么访问服务调试，到比赛结束还是没找到漏洞。</p>
+<p>后记，发现我们没理解好manual，也是对比赛的不熟悉。</p>
+<blockquote>
+<p>You should use following network settings for your team’s PCs during the game (or virtual machines setup):<br>IP      = 10.A.B.128 - 10.A.B.255<br>Netmask = 255.255.255.0<br>Gateway = 10.A.B.1<br>DNS     = 8.8.8.8</p>
+</blockquote>
+<p>实际上我们需要把自己机子（或者新的虚拟机）的ip设置和Vuln Image同一个局域网，以便用来访问Vuln Image的服务，才可以测试和攻击。</p>
+<h3 id="收获总结">收获总结</h3><ul>
+<li>远程控制: ssh -p 2222 root@127.0.0.1</li>
+<li>上传文件: scp -P 2222 filename root@127.0.0.1:/root （注意是大写P）</li>
+<li>下载文件: scp -P 2222 -r root@127.0.0.1:/root  dirname （-r是操作文件夹）</li>
+<li>重置root密码: <a href="http://blog.dosec.org/archives/2268.html" target="_blank" rel="external">http://blog.dosec.org/archives/2268.html</a></li>
+<li>测试时间: time nc -nv 10.10.10.5 31337</li>
+<li>查看开放端口: netstat -tulnp</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这两天参加了RuCTFe比赛，是由俄罗斯Hackerdom组织面向全球参赛队伍的在线攻防赛。第一次接触攻防模式（Attack-Defense）的，抱着学习心态来体验下。之前只参加国内的ctf，初赛都是解题模式，实力不济，没进过决赛，对攻防模式确实陌生。虽然最后没有得分，但也是一次很好的经历体验，面对那么多的web框架，就知道自己的不足; 见识到新东西，开阔视野。</p>]]>
+    
+    </summary>
+    
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
+    
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[geekpwn2015 writeup]]></title>
+    <link href="http://yoursite.com/2015/11/08/geekpwn2015-writeup/"/>
+    <id>http://yoursite.com/2015/11/08/geekpwn2015-writeup/</id>
+    <published>2015-11-08T14:08:17.000Z</published>
+    <updated>2016-01-06T14:22:09.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="<!-￼1->"><a href="/2015/11/08/geekpwn2015-writeup/p1.zip" title="P1:你能得到正确的flag吗?">P1:你能得到正确的flag吗?</a></h3><p>上IDA，f5，看到程序逻辑如下：<br><a id="more"></a><br><img src="/2015/11/08/geekpwn2015-writeup/p1_1.png" alt="p1_1.png" title=""><br>逻辑很简单，只是比较输入的字符(0x804A0E0为首地址)和目标字符串(0x804A040为首地址）是否相同。查看下0x804A040的数据即可得到flag为Welcome_to_GeekPwn_2015 。<br><img src="/2015/11/08/geekpwn2015-writeup/p1_2.png" alt="p1_2.png" title=""></p>
+<h3 id="<!-￼4->"><a href="/2015/11/08/geekpwn2015-writeup/p2.zip" title="P2:找到被隐藏的flag">P2:找到被隐藏的flag</a></h3><img src="/2015/11/08/geekpwn2015-writeup/p2_1.png" alt="p2_1.png" title="">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">guess</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        t = a + n*<span class="number">251</span></span><br><span class="line">        <span class="keyword">if</span> t % b == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> chr(t / b)</span><br><span class="line">        n += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    magic = [ord(ch) <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">'Welcome to GeekPwn 2015!'</span>]</span><br><span class="line">    target = [int(n, <span class="number">16</span>) <span class="keyword">for</span> n <span class="keyword">in</span> <span class="string">"99 A1 73 33 5F AA 42 1C 1B 39 3E F9 39 45 0E 30 0A 45 1C BF 2D BF F6 55"</span>.split()]</span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(magic)):</span><br><span class="line">        ans.append(guess(target[i], magic[i]))</span><br><span class="line">    <span class="keyword">print</span> <span class="string">''</span>.join(ans)</span><br><span class="line">main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># GeekPwn_2015_see_u_1024!</span></span><br></pre></td></tr></table></figure>
+<p>未完待续…</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="<!-￼1->"><a href="/2015/11/08/geekpwn2015-writeup/p1.zip" title="P1:你能得到正确的flag吗?">P1:你能得到正确的flag吗?</a></h3><p>上IDA，f5，看到程序逻辑如下：<br>]]>
+    
+    </summary>
+    
+      <category term="reverse" scheme="http://yoursite.com/tags/reverse/"/>
+    
+      <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
+    
+  </entry>
+  
+</feed>

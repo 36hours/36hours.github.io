@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/11 | czl&#39;s blog</title>
+  <title>IDA篇 | czl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="czl's blog">
-<meta property="og:url" content="http://yoursite.com/archives/2015/11/index.html">
+  <meta name="description" content="IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDA篇">
+<meta property="og:url" content="http://yoursite.com/2016/02/01/note-ida/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description">
+<meta property="og:description" content="IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/2.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/8.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/9.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/11.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/12.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/6.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/5.png">
+<meta property="og:updated_time" content="2016-02-02T15:39:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="czl's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="IDA篇">
+<meta name="twitter:description" content="IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。">
   
     <link rel="alternative" href="/atom.xml" title="czl&#39;s blog" type="application/atom+xml">
   
@@ -63,58 +72,64 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/11/22/ructfe/" class="archive-article-date">
-  <time datetime="2015-11-22T07:57:22.000Z" itemprop="datePublished">Nov 22</time>
+        <section id="main"><article id="post-note-ida" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/01/note-ida/" class="article-date">
+  <time datetime="2016-02-01T11:33:24.000Z" itemprop="datePublished">2016-02-01</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/22/ructfe/">ructfe体验</a>
+    <h1 class="article-title" itemprop="name">
+      IDA篇
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/11/08/geekpwn2015-writeup/" class="archive-article-date">
-  <time datetime="2015-11-08T14:08:17.000Z" itemprop="datePublished">Nov 8</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/08/geekpwn2015-writeup/">geekpwn2015 writeup</a>
-    </h1>
-  
+        <p>IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。<br><a id="more"></a></p>
+<h3 id="0x1_导出数据">0x1 导出数据</h3><p>快速把内容导出成C语言形式，快捷键：Shift+E<br><img src="/2016/02/01/note-ida/1.jpg" alt="1.jpg" title=""></p>
+<h3 id="0x2_Patch内容">0x2 Patch内容</h3><p>对于花指令混淆，Patch为NOP指令极其方便，调用方式：Edit -&gt; Patch Program<br><img src="/2016/02/01/note-ida/2.png" alt="2.png" title=""></p>
+<h3 id="0x3_f5反汇编">0x3 f5反汇编</h3><p>堆栈不平衡，无法反汇编<br><img src="/2016/02/01/note-ida/8.png" alt="8.png" title=""><br>设置显示SP，Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/9.png" alt="9.png" title=""><br>可见是由于堆栈不平衡<br><img src="/2016/02/01/note-ida/11.png" alt="11.png" title=""><br>调整sp，之后就可以f5了<br><img src="/2016/02/01/note-ida/12.png" alt="12.png" title=""></p>
+<h3 id="0x4_汇编指令说明">0x4 汇编指令说明</h3><p>遇到不熟悉的汇编指令，使用方式：Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/6.png" alt="6.png" title=""><br><img src="/2016/02/01/note-ida/5.png" alt="5.png" title=""></p>
+<h3 id="0x5_汇编和伪代码View同步切换">0x5 汇编和伪代码View同步切换</h3><p>有时伪代码并不准确，需要查看其对应的汇编指令，快捷键：Tab</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/01/note-ida/" data-id="cik3wu16j0005qpu9pcx6skr3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ida/">ida</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/10/e-crackme/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">小小易语言crackme</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

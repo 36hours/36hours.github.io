@@ -4,7 +4,7 @@
   <subtitle><![CDATA[reverse! reverse! reverse!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-10T16:20:22.000Z</updated>
+  <updated>2016-02-02T15:39:23.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[IDA篇]]></title>
+    <link href="http://yoursite.com/2016/02/01/note-ida/"/>
+    <id>http://yoursite.com/2016/02/01/note-ida/</id>
+    <published>2016-02-01T11:33:24.000Z</published>
+    <updated>2016-02-02T15:39:23.000Z</updated>
+    <content type="html"><![CDATA[<p>IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。<br><a id="more"></a></p>
+<h3 id="0x1_导出数据">0x1 导出数据</h3><p>快速把内容导出成C语言形式，快捷键：Shift+E<br><img src="/2016/02/01/note-ida/1.jpg" alt="1.jpg" title=""></p>
+<h3 id="0x2_Patch内容">0x2 Patch内容</h3><p>对于花指令混淆，Patch为NOP指令极其方便，调用方式：Edit -&gt; Patch Program<br><img src="/2016/02/01/note-ida/2.png" alt="2.png" title=""></p>
+<h3 id="0x3_f5反汇编">0x3 f5反汇编</h3><p>堆栈不平衡，无法反汇编<br><img src="/2016/02/01/note-ida/8.png" alt="8.png" title=""><br>设置显示SP，Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/9.png" alt="9.png" title=""><br>可见是由于堆栈不平衡<br><img src="/2016/02/01/note-ida/11.png" alt="11.png" title=""><br>调整sp，之后就可以f5了<br><img src="/2016/02/01/note-ida/12.png" alt="12.png" title=""></p>
+<h3 id="0x4_汇编指令说明">0x4 汇编指令说明</h3><p>遇到不熟悉的汇编指令，使用方式：Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/6.png" alt="6.png" title=""><br><img src="/2016/02/01/note-ida/5.png" alt="5.png" title=""></p>
+<h3 id="0x5_汇编和伪代码View同步切换">0x5 汇编和伪代码View同步切换</h3><p>有时伪代码并不准确，需要查看其对应的汇编指令，快捷键：Tab</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。<br>]]>
+    
+    </summary>
+    
+      <category term="ida" scheme="http://yoursite.com/tags/ida/"/>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[小小易语言crackme]]></title>

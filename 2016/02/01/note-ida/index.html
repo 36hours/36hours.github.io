@@ -17,9 +17,11 @@
 <meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/9.png">
 <meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/11.png">
 <meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/12.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/13.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/14.png">
 <meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/6.png">
 <meta property="og:image" content="http://yoursite.com/2016/02/01/note-ida/5.png">
-<meta property="og:updated_time" content="2016-02-02T15:39:23.000Z">
+<meta property="og:updated_time" content="2016-02-29T15:37:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IDA篇">
 <meta name="twitter:description" content="IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。">
@@ -101,14 +103,17 @@
         <p>IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。<br><a id="more"></a></p>
 <h3 id="0x1_导出数据">0x1 导出数据</h3><p>快速把内容导出成C语言形式，快捷键：Shift+E<br><img src="/2016/02/01/note-ida/1.jpg" alt="1.jpg" title=""></p>
 <h3 id="0x2_Patch内容">0x2 Patch内容</h3><p>对于花指令混淆，Patch为NOP指令极其方便，调用方式：Edit -&gt; Patch Program<br><img src="/2016/02/01/note-ida/2.png" alt="2.png" title=""></p>
-<h3 id="0x3_f5反汇编">0x3 f5反汇编</h3><p>堆栈不平衡，无法反汇编<br><img src="/2016/02/01/note-ida/8.png" alt="8.png" title=""><br>设置显示SP，Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/9.png" alt="9.png" title=""><br>可见是由于堆栈不平衡<br><img src="/2016/02/01/note-ida/11.png" alt="11.png" title=""><br>调整sp，之后就可以f5了<br><img src="/2016/02/01/note-ida/12.png" alt="12.png" title=""></p>
+<h3 id="0x3_f5反汇编">0x3 f5反汇编</h3><h4 id="堆栈不平衡，无法反汇编">堆栈不平衡，无法反汇编</h4><img src="/2016/02/01/note-ida/8.png" alt="8.png" title="">
+<p>设置显示SP，Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/9.png" alt="9.png" title=""><br>可见是由于堆栈不平衡<br><img src="/2016/02/01/note-ida/11.png" alt="11.png" title=""><br>调整sp，之后就可以f5了<br><img src="/2016/02/01/note-ida/12.png" alt="12.png" title=""></p>
+<h4 id="变量分配空间失败，无法反汇编">变量分配空间失败，无法反汇编</h4><img src="/2016/02/01/note-ida/13.png" alt="13.png" title="">
+<p>最后发现是由于地址不对齐，导致分析不了，patch为 “adc [ebp+4], esi” 就可以。<br><img src="/2016/02/01/note-ida/14.png" alt="14.png" title=""></p>
 <h3 id="0x4_汇编指令说明">0x4 汇编指令说明</h3><p>遇到不熟悉的汇编指令，使用方式：Options -&gt; Gerneral<br><img src="/2016/02/01/note-ida/6.png" alt="6.png" title=""><br><img src="/2016/02/01/note-ida/5.png" alt="5.png" title=""></p>
 <h3 id="0x5_汇编和伪代码View同步切换">0x5 汇编和伪代码View同步切换</h3><p>有时伪代码并不准确，需要查看其对应的汇编指令，快捷键：Tab</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/note-ida/" data-id="cik3wu16j0005qpu9pcx6skr3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/note-ida/" data-id="cil85cpl50005s7u96jff6wuz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ida/">ida</a></li></ul>

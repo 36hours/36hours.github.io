@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/06/reinstall/index.html">
 <meta property="og:site_name" content="czl's blog">
 <meta property="og:description" content="元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。">
-<meta property="og:updated_time" content="2016-02-27T17:46:29.000Z">
+<meta property="og:updated_time" content="2016-03-29T14:35:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统重装记">
 <meta name="twitter:description" content="元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。">
@@ -95,7 +95,7 @@
 <h3 id="UEFI安装ubuntu">UEFI安装ubuntu</h3><p>关键要弄个efi分区 (ps:有时没有这个选项，猜想U盘要选UEFI启动，或者要联网)</p>
 <h3 id="中文输入">中文输入</h3><p><a href="http://my.oschina.net/No5stranger/blog/290026" target="_blank" rel="external">http://my.oschina.net/No5stranger/blog/290026</a><br>搜狗拼音 <a href="http://pinyin.sogou.com/linux/" target="_blank" rel="external">http://pinyin.sogou.com/linux/</a></p>
 <h3 id="安装jdk7">安装jdk7</h3><p><a href="http://blog.csdn.net/czmchen/article/details/38843099" target="_blank" rel="external">http://blog.csdn.net/czmchen/article/details/38843099</a></p>
-<h3 id="基础工具">基础工具</h3><p>sudo apt-get install git<br>sudo apt-get install nautilus-open-terminal<br>sudo apt-get install rar<br>sudo apt-get install bless<br>sudo apt-get install keepass2<br><a href="http://lab.yqc.im/ubuntu-keepass.html" target="_blank" rel="external">http://lab.yqc.im/ubuntu-keepass.html</a><br>sudo mv /etc/fonts/conf.d/49-sansserif.conf /etc/fonts/conf.d/49-sansserif.conf.bak</p>
+<h3 id="基础工具">基础工具</h3><p>sudo apt-get install git<br>sudo apt-get install nautilus-open-terminal<br>sudo apt-get install rar<br>sudo apt-get install bless<br>sudo apt-get install curl<br>sudo apt-get install ipython<br>sudo apt-get install keepass2<br>sudo apt-get install gcc-multilib<br><a href="http://lab.yqc.im/ubuntu-keepass.html" target="_blank" rel="external">http://lab.yqc.im/ubuntu-keepass.html</a><br>sudo mv /etc/fonts/conf.d/49-sansserif.conf /etc/fonts/conf.d/49-sansserif.conf.bak</p>
 <h3 id="wine">wine</h3><p>sudo apt-get install wine<br><a href="https://wiki.winehq.org/FAQ" target="_blank" rel="external">常见问题</a><br>WINEARCH=win32 WINEPREFIX=~/.win32 winecfg  创建32位系统<br>WINEPREFIX=~/.win32 winetricks mfcn42 安装dll</p>
 <h3 id="sublime">sublime</h3><p><a href="http://justcoding.iteye.com/blog/1957613" target="_blank" rel="external">http://justcoding.iteye.com/blog/1957613</a><br>sudo add-apt-repository ppa:webupd8team/sublime-text-3<br>sudo apt-get update<br>sudo apt-get install sublime-text-installer<br><a href="https://github.com/lyfeyaj/sublime-text-imfix" target="_blank" rel="external">https://github.com/lyfeyaj/sublime-text-imfix</a>  解决不能输入中文问题</p>
 <h3 id="Ubuntu有线网络与无线网线自由切换方法">Ubuntu有线网络与无线网线自由切换方法</h3><p><a href="http://my.oschina.net/zengsai/blog/203201" target="_blank" rel="external">http://my.oschina.net/zengsai/blog/203201</a></p>
@@ -103,14 +103,16 @@
 <h3 id="安装VMware">安装VMware</h3><p><a href="http://www.linuxidc.com/Linux/2015-01/111791.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2015-01/111791.htm</a><br>vmware workstation 11许可证密钥:1F04Z-6D111-7Z029-AV0Q4-3AEH8</p>
 <h3 id="搭建安卓开发环境">搭建安卓开发环境</h3><p><a href="http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html" target="_blank" rel="external">http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html</a></p>
 <h3 id="安装pip">安装pip</h3><p>$ sudo apt-get install python-pip python-dev build-essential<br>$ sudo pip install –upgrade pip<br>$ sudo pip install –upgrade virtualenv</p>
-<h3 id="安装pwntools">安装pwntools</h3><p>$ sudo pip install pwntools</p>
+<h3 id="安装pwntools">安装pwntools</h3><p>$ sudo pip install pwntools<br><a href="https://github.com/aquynh/capstone" target="_blank" rel="external">https://github.com/aquynh/capstone</a></p>
 <h3 id="安装nodejs和hexo">安装nodejs和hexo</h3><p><a href="https://cnodejs.org/topic/53a92af6c3ee0b58203258fe" target="_blank" rel="external">https://cnodejs.org/topic/53a92af6c3ee0b58203258fe</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>npm install hexo-deployer-git –save<br>npm install hexo-generator-free –save<br>npm install hexo-generator-sitemap –save</p>
 <h3 id="安装Zeal">安装Zeal</h3><p><a href="https://zealdocs.org/download.html" target="_blank" rel="external">https://zealdocs.org/download.html</a><br>$ sudo add-apt-repository ppa:zeal-developers/ppa<br>$ sudo apt-get update<br>$ sudo apt-get install zeal</p>
+<h3 id="安装Ruby">安装Ruby</h3><p><a href="http://blog.csdn.net/chszs/article/details/42462517" target="_blank" rel="external">http://blog.csdn.net/chszs/article/details/42462517</a><br>rvm lst known<br>rvm install 2.1.4</p>
+<h3 id="安装metasploit">安装metasploit</h3><p><a href="http://www.darkoperator.com/installing-metasploit-in-ubunt/" target="_blank" rel="external">http://www.darkoperator.com/installing-metasploit-in-ubunt/</a><br><a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br>gem sources –add <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a> –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/06/reinstall/" data-id="cil85cpmn000es7u9huy2wkqk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/06/reinstall/" data-id="cin7hp1k2000gjsu9b8o3jmat" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,7 +149,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/逆向分析/">逆向分析</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/逆向分析/">逆向分析</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -174,7 +176,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -184,6 +186,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/19/pwn-experience/">pwn学习经历</a>
+          </li>
         
           <li>
             <a href="/2016/02/01/note-ida/">IDA篇</a>
@@ -199,10 +205,6 @@
         
           <li>
             <a href="/2015/12/28/note-mysql/">mysql篇</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/21/note-gdb/">gdb篇</a>
           </li>
         
       </ul>

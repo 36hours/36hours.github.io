@@ -3,24 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>docker篇 | czl&#39;s blog</title>
+  <title>Archives: 2016/4 | czl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些概念
-镜像是创建Docker容器的基础
-镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变">
-<meta property="og:type" content="article">
-<meta property="og:title" content="docker篇">
-<meta property="og:url" content="http://yoursite.com/2015/12/02/note-docker/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="czl's blog">
+<meta property="og:url" content="http://yoursite.com/archives/2016/04/index.html">
 <meta property="og:site_name" content="czl's blog">
-<meta property="og:description" content="一些概念
-镜像是创建Docker容器的基础
-镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变">
-<meta property="og:updated_time" content="2016-01-06T14:14:48.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker篇">
-<meta name="twitter:description" content="一些概念
-镜像是创建Docker容器的基础
-镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变">
+<meta name="twitter:title" content="czl's blog">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="czl&#39;s blog" type="application/atom+xml">
   
@@ -70,90 +63,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-note-docker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/02/note-docker/" class="article-date">
-  <time datetime="2015-12-02T12:27:53.000Z" itemprop="datePublished">2015-12-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      docker篇
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/04/19/pwn-experience/" class="archive-article-date">
+  <time datetime="2016-04-19T11:59:44.000Z" itemprop="datePublished">Apr 19</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/04/19/pwn-experience/">pwn学习经历</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一些概念">一些概念</h3><ul>
-<li>镜像是创建Docker容器的基础</li>
-<li>镜像自身是只读的。容器从镜像启动的时候，Docker会在镜像的最上层创建一个可写层，镜像本身将保持不变</li>
-</ul>
-<a id="more"></a>
-<h3 id="镜像相关指令">镜像相关指令</h3><ul>
-<li>sudo docker pull ubuntu:14.04     #[获取镜像]</li>
-<li>sudo docker pull dl.dockerpool.com:5000/ubuntu    #[从私有的注册服务器下载镜像]</li>
-<li>sudo docker images    #[查看本地已有的镜像]</li>
-<li>sudo docker tag dl.dockerpool.com:5000/ubuntu:latest ubuntu:latest    #[添加新的标签]</li>
-<li>sudo docker inspect ubuntu    #[查看镜像详细信息]</li>
-<li>sudo docker inspect -f &#123;&#123;&quot;.Architecture&quot;&#125;&#125; 0b31 #[查看指定信息，记得属性前面要加个点，“0b31”是id的缩写]</li>
-<li>sudo docker search mysql  #[查找镜像, 加上-s可以指定星级以上]</li>
-<li>sudo docker rmi ubuntu:14.04  #[删除镜像，注当同一个镜像拥有多个标签的时候，docker rmi命令只是删除了该镜像多个标签中的指定标签而已，并不影响镜像文件]</li>
-</ul>
-<h3 id="容器相关指令">容器相关指令</h3><ul>
-<li>sudo docker create -it ubuntu:latest  #[docker create创建的容器处于stop状态，需用docker start启动]</li>
-<li>sudo docker run ubuntu /bin/echo &quot;hello world&quot;  #[docker run等价于先执行docker create命令，再执行docker start命令]</li>
-<li>sudo docker run -t -i ubuntu /bin/bash    #[-t选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开,按Ctrl+d或输入exit命令来退出容器]</li>
-<li>sudo docker run -d ubuntu /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;   #[-d 让Docker容器在后台以守护态（Daemonized）形式运行, 注意不能和-it一起用]</li>
-<li>sudo docker ps    #[查看容器信息]</li>
-<li>sudo docker ps -a #[查看所有容器信息，包括已经停止的]</li>
-<li>sudo docker logs 0b31 #[查看容易输出信息]</li>
-<li>sudo docker stop 0b31 #[停止容器，首先向容器发送SIGTERM信号，等待一段时间后（默认为10秒），再发送SIGKILL信号终止容器]</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/02/note-docker/" data-id="cin7hp1ls000vjsu95dzfd782" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/12/17/idapython/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          idapython初体验
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/11/22/ructfe/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ructfe体验</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
+  
+  
+    </div></section>
+  
 </section>
         
           <aside id="sidebar">

@@ -17,7 +17,7 @@ run 运行，缩写r">
 set args 可指定运行时参数。（如：set args 10 20 30 40 50）
 show args 命令可以查看设置好的运行参数
 run 运行，缩写r">
-<meta property="og:updated_time" content="2016-01-06T14:22:36.000Z">
+<meta property="og:updated_time" content="2016-04-17T05:16:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gdb篇">
 <meta name="twitter:description" content="基本操作
@@ -128,12 +128,17 @@ run 运行，缩写r">
 <li>info registers 查看寄存器</li>
 <li>x/x *address  用16进制显示指定地址里的内容</li>
 <li>x/s *address 显示字符串</li>
+<li>x/10x $esp-4   显示esp指向内容</li>
+</ul>
+<h3 id="修改内存">修改内存</h3><ul>
+<li>set *0x00400FBD=0x12345678 默认是DWORD</li>
+<li>set <em>((char </em>)0x00400FBD)=0x14 指定为BYTE</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/21/note-gdb/" data-id="cil85cpmx000ls7u9vjbye8id" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/21/note-gdb/" data-id="cin7hp1k9000njsu9c05opqxr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/">gdb</a></li></ul>
@@ -172,7 +177,7 @@ run 运行，缩写r">
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/逆向分析/">逆向分析</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/逆向分析/">逆向分析</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -199,7 +204,7 @@ run 运行，缩写r">
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -209,6 +214,10 @@ run 运行，缩写r">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/19/pwn-experience/">pwn学习经历</a>
+          </li>
         
           <li>
             <a href="/2016/02/01/note-ida/">IDA篇</a>
@@ -224,10 +233,6 @@ run 运行，缩写r">
         
           <li>
             <a href="/2015/12/28/note-mysql/">mysql篇</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/21/note-gdb/">gdb篇</a>
           </li>
         
       </ul>

